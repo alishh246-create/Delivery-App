@@ -55,7 +55,7 @@ const burgers = [
 
   <div style={{ zIndex: 2 }}>
     <h1 className="fw-bold display-4">
-      Alishh Flavour Town
+      Alishha Flavour Town
     </h1>
     <p className="fs-4">
       Fast Food, Happy Mood 
