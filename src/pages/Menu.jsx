@@ -137,7 +137,7 @@ function Menu() {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <h5 className="card-title">Loaded Chocolate Brownie</h5>
+                    <h5 className="card-title">Loaded Chocolate Donuts</h5>
                     <h6 className='card-text'>Price:550 per piece</h6>
                     <button className="btn btn-warning">Add To Cart</button>
                   </div>

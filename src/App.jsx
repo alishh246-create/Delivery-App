@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Follow from "./components/Follow";
 import OrderMethod from "./components/OrderMethod";
+import Billing from "./pages/Billing";
 
 
 function App() {
@@ -16,10 +17,12 @@ function App() {
        <Navbar/>
        <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="*" element={<Navigate to="/" />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
-    </Routes>
+      <Route path="/billing" element={<Billing/>}/>
+      </Routes>
     </>
   );
 }

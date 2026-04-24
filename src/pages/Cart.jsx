@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Billing from "./Billing";
 
 function Cart() {
+    const navigate = useNavigate();
   return (
     <>
     <div className="container py-5">
@@ -69,9 +72,12 @@ function Cart() {
 
       {/* Checkout Button */}
       <div className="text-end mt-3">
-        <button className="btn btn-success">
-          Proceed to Checkout 
-        </button>
+        <button 
+  className="btn btn-success"
+  onClick={() => navigate("/billing")}
+>
+  Proceed to Checkout
+</button>
       </div>
 
     </div>
