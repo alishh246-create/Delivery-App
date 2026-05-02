@@ -52,7 +52,7 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-            {/* 🛒 CART ICON WITH BADGE */}
+            {/* CART ICON WITH BADGE */}
             <li className="nav-item position-relative">
               <Link className="nav-link text-white fw-semibold" to="/cart">
                 <FaShoppingCart size={22} />
