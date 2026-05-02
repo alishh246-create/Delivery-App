@@ -7,14 +7,14 @@ const Contact = () => {
     <>
       <div className="container mt-5 d-flex justify-content-center">
 
-        <div className="card shadow-lg border-0 p-4" style={{ maxWidth: "600px", width: "100%", borderRadius: "15px" }}>
+<div className="card shadow-lg border-0 p-4" style={{ maxWidth: "600px", width: "100%", borderRadius: "15px" }}>
           
           <h2 className="text-center text-danger mb-3">
             Contact Us 
           </h2>
 
           <p className="text-center text-muted mb-4">
-            We'd love to hear from you!
+            We did love to hear from you!
           </p>
 
           <form>
@@ -41,24 +41,22 @@ const Contact = () => {
             <div className="mb-3">
               <textarea 
                 placeholder="Write a Message..." 
-                className="form-control rounded-3 px-3" 
-                rows="4"
+                className="form-control rounded-5 px-3" 
+                rows="3"
               ></textarea>
             </div>
 
             {/* Button */}
             <button 
               type="button" 
-              className="btn btn-warning w-100 fw-bold rounded-pill"
-            >
+              className="btn btn-warning w-100 fw-bold rounded-pill" onClick={() =>alert("Thanks For Contacting Us!")}>
               Send Message 
             </button>
 
           </form>
         </div>
       </div>
-
-      <br />
+<br/>
       <Follow />
     </>
   );

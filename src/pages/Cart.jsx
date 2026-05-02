@@ -1,87 +1,94 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, increaseQty, decreaseQty } from "../features/cartSlice";
 import Footer from "../components/Footer";
-import Billing from "./Billing";
 
 function Cart() {
-    const navigate = useNavigate();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
+
   return (
     <>
-    <div className="container py-5">
+      <div className="container py-5">
 
-      <h2 className="text-center text-danger mb-4">
-        Your Cart 
-      </h2>
+        <h2 className="text-center text-danger mb-4">
+          Your Cart
+        </h2>
 
-      {/* Item 1 */}
-      <div className="card mb-3 p-3 shadow">
-        <div className="row align-items-center">
+        {cartItems.length === 0 ? (
+          <h5 className="text-center text-muted">Cart is empty</h5>
+        ) : (
+          cartItems.map((item) => (
+            <div className="card mb-3 p-3 shadow" key={item.id}>
+              <div className="row align-items-center">
 
-          <div className="col-md-2">
-            <img 
-              src="https://images.unsplash.com/photo-1614243135180-c4f3fb925daf?w=500" 
-              className="img-fluid rounded" 
-              alt="burger"
-            />
-          </div>
+                <div className="col-md-2">
+                  <img src={item.img} className="img-fluid rounded" />
+                </div>
 
-          <div className="col-md-4">
-            <h5>Smoky BBQ Burger</h5>
-            <p className="mb-0">Price: Rs. 1699</p>
-          </div>
+                <div className="col-md-4">
+                  <h5>{item.name}</h5>
+                  <p>Price: Rs. {item.price}</p>
+                </div>
 
-          <div className="col-md-3">
-            <span className="badge bg-secondary">Qty: 1</span>
-          </div>
+                <div className="col-md-3">
+                  <button
+                    className="btn btn-success me-2"
+                    onClick={() => dispatch(decreaseQty(item.id))}
+                  >
+                    -
+                  </button>
 
-          <div className="col-md-3">
-            <button className="btn btn-danger">X</button>
-          </div>
+                  <span className="badge bg-secondary px-3 py-2">
+                    {item.qty}
+                  </span>
 
-        </div>
+                  <button
+                    className="btn btn-warning ms-2"
+                    onClick={() => dispatch(increaseQty(item.id))}
+                  >
+                    +
+                  </button>
+                </div>
+
+                <div className="col-md-3 text-end">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                  >
+                    X
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          ))
+        )}
+
+        {/* 👇 ONLY ONE TOTAL AT END */}
+        
+        {cartItems.length > 0 && (
+          <div className="text-end mt-4">
+  <button
+    className="btn btn-danger px-4"
+    onClick={() => navigate("/billing")}
+  >
+    Grand Total: Rs. {total}
+  </button>
+</div>
+        )}
+
       </div>
 
-      {/* Item 2 */}
-      <div className="card mb-3 p-3 shadow">
-        <div className="row align-items-center">
-
-          <div className="col-md-2">
-            <img 
-              src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" 
-              className="img-fluid rounded" 
-              alt="cake"
-            />
-          </div>
-
-          <div className="col-md-4">
-            <h5>Molten Lava Cake</h5>
-            <p className="mb-0">Price: Rs. 3100</p>
-          </div>
-
-          <div className="col-md-3">
-            <span className="badge bg-secondary">Qty: 1</span>
-          </div>
-
-          <div className="col-md-3">
-            <button className="btn btn-danger">X</button>
-          </div>
-
-        </div>
-      </div>
-
-
-      {/* Checkout Button */}
-      <div className="text-end mt-3">
-        <button 
-  className="btn btn-success"
-  onClick={() => navigate("/billing")}
->
-  Proceed to Checkout
-</button>
-      </div>
-
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }
